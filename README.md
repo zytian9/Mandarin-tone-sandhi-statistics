@@ -1,73 +1,81 @@
-# Mandarin Tone Sandhi Realization: Evidence from Large Speech Corpora
 
+---
+
+# Mandarin Tone Sandhi Realization: Evidence from Large Speech Corpora
 
 ## Dataset
 
+### Free ST Chinese Mandarin Corpus (Speaker Info)
+This corpus was recorded in a quiet, indoor environment using a cellphone. It includes 855 speakers, each contributing 120 utterances. All utterances were meticulously transcribed and verified by human annotators, ensuring transcription accuracy.
 
-### Free ST Chinese Mandarin Corpus (Speaker Info) 
-This corpus were recorded in silence in-door environment using cellphone. It has 855 speakers. Each speaker has 120 utterances. All utterances were carefully transcribed and checked by human. Transcription accuracy is guaranteed.
-http://www.openslr.org/38/
+**Speaker Data Example**:  
+20170001P00189I0036 | Gender: Female | Age: 31 | Region: Sichuan | Utterance: 我有两张君悦皇家浴场  
+- P00189I: Speaker number  
+- 0036: Speech number  
 
-20170001P00189I0036	女	31	四川	我有两张君悦皇家浴场
+[Free ST Chinese Mandarin Corpus](http://www.openslr.org/38/)
 
-P00189I: speaker number
-0036: speech number
+### MAGICDATA Mandarin Chinese Read Speech Corpus (Read Speech) (Speaker Info)
+Developed by Magic Data Technology Co., Ltd., this corpus contains 755 hours of scripted read speech data from 1080 native Mandarin speakers from mainland China. The sentence transcription accuracy exceeds 98%.
 
-### MAGICDATA Mandarin Chinese Read Speech Corpus (Read Speech)(Speaker Info)
-The corpus by Magic Data Technology Co., Ltd. , containing 755 hours of scripted read speech data from 1080 native speakers of the Mandarin Chinese spoken in mainland China. The sentence transcription accuracy is higher than 98%.
-http://www.openslr.org/68/
+[MAGICDATA Mandarin Chinese Read Speech Corpus](http://www.openslr.org/68/)
 
+### aidatatang_200zh
+This corpus includes:
+- 200 hours of mostly mobile-recorded acoustic data.
+- 600 speakers from various accent regions in China.
+- Transcription accuracy for each sentence is over 98%.
+- Recordings were made in quiet indoor settings.
+- The database is split into a training set, validation set, and testing set in a 7:1:2 ratio.
+- Detailed information such as speech data coding and speaker information is included in the metadata file.
+- Segmented transcripts are provided.
 
+[aidatatang_200zh](http://www.openslr.org/62/)
 
+## Process Pipelines
 
-### aidatatang_200zh 
-
-The contents and the corresponding descriptions of the corpus include:
-
-The corpus contains 200 hours of acoustic data, which is mostly mobile recorded data.
-600 speakers from different accent areas in China are invited to participate in the recording.
-The transcription accuracy for each sentence is larger than 98%.
-Recordings are conducted in a quiet indoor environment.
-The database is divided into training set, validation set, and testing set in a ratio of 7: 1: 2.
-Detail information such as speech data coding and speaker information is preserved in the metadata file.
-Segmented transcripts are also provided.
-
-
-http://www.openslr.org/62/
-
-
-## Process pipelines
-
-### Metadata Stat
+### Metadata Statistics
 
 ### Forced Alignment
-We use Charsiu to do the vowel level forced alignment.
+We utilized Charsiu for vowel-level forced alignment. Since the authors of Charsiu have released the textgrid files we require, we directly used their alignment files.
 
-https://github.com/lingjzhu/charsiu/
-
-Because the authors of Charsiu released the textgrid files we want, here we directly used their alignments files:
-
-https://github.com/lingjzhu/charsiu/blob/main/misc/data.md#alignments-for-mandarin-speech-datasets
+[Charsiu Forced Alignment](https://github.com/lingjzhu/charsiu/blob/main/misc/data.md#alignments-for-mandarin-speech-datasets)
 
 ### Segmentation
+Word segmentation is performed using LTP.
 
-We use LTP to do the word segmentation
-
-https://github.com/HIT-SCIR/ltp
+[LTP - Language Technology Platform](https://github.com/HIT-SCIR/ltp)
 
 ### Tone Annotation
+Tone annotation is conducted using g2pM.
 
-We use g2pM to do the tone annotation
-
-https://github.com/kakaobrain/g2pM
+[g2pM - Grapheme to Phoneme for Mandarin](https://github.com/kakaobrain/g2pM)
 
 ## Features
+We generated the following features for each character in the utterances across all three datasets:
 
-We generated the following features for each character of the utterances in all three datasets:
+## References
+If you want to use the data, please cite the following papers:
 
-character;tone; position_type:start_word,end_word,middle; word; word_len; syllable; previous_tone;
-following_tone; previous_syllable; following_syllable; speaker_id; gender; 
-age; province; vowel_dur; char_dur.
+For Tone Sandhi Data:
+```
+@inproceedings{Tian2022MandarinTS,
+  title={Mandarin Tone Sandhi Realization: Evidence from Large Speech Corpora},
+  author={Zuoyu Tian and Xiao Dong and Feier Gao and Haining Wang and Charles Steven Lin},
+  booktitle={Interspeech},
+  year={2022},
+  url={https://www.isca-speech.org/archive/pdfs/interspeech_2022/tian22e_interspeech.pdf}
+}
+```
 
+For Forced Alignment Files:
+```
+@article{zhu2022charsiu,
+  title={Phone-to-audio alignment without text: A Semi-supervised Approach},
+  author={Zhu, Jian and Zhang, Cong and Jurgens, David},
+  journal={IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  year={2022}
+}
+```
 
-
+---
